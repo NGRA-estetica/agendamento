@@ -86,23 +86,9 @@
   <header class="sticky top-0 z-40 bg-[#0D0E11]/95 backdrop-blur-md border-b border-white/10">
     <div class="max-w-5xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between gap-3">
       <div class="flex items-center gap-3.5 min-w-0">
-        <!-- Emblema SVG oficial estilo NGRA Lavagem Automotiva -->
-        <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-[#16181D] border border-[#D4AF37]/40 flex items-center justify-center shrink-0 overflow-hidden shadow-md">
-          <svg viewBox="0 0 120 90" class="w-11 h-11 lg:w-12 lg:h-12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="ngraGold" x1="0" y1="0" x2="120" y2="90" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#F6DC88" />
-                <stop offset="50%" stop-color="#D4AF37" />
-                <stop offset="100%" stop-color="#9A7216" />
-              </linearGradient>
-            </defs>
-            <path d="M22 46C24 22 48 10 76 14C92 16 102 24 106 32" stroke="url(#ngraGold)" stroke-width="4.5" stroke-linecap="round" />
-            <path d="M34 38C48 29 70 28 88 37L103 44C106 45 107 49 103 50H26C23 50 23 45 27 43L34 38Z" fill="#0B0C0E" stroke="url(#ngraGold)" stroke-width="2.2" />
-            <path d="M84 22L86 27L91 29L86 31L84 36L82 31L77 29L82 27L84 22Z" fill="#F3D478" />
-            <text x="60" y="69" text-anchor="middle" fill="#FFFFFF" stroke="url(#ngraGold)" stroke-width="1" font-size="23" font-weight="900" letter-spacing="2">NGRA</text>
-            <rect x="14" y="74" width="92" height="11" rx="2" fill="url(#ngraGold)" />
-            <text x="60" y="82" text-anchor="middle" fill="#0D0E11" font-size="6.4" font-weight="800" letter-spacing="1.1">LAVAGEM AUTOMOTIVA</text>
-          </svg>
+        <!-- Logo Oficial NGRA Lavagem Automotiva -->
+        <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-xl bg-[#16181D] border border-[#D4AF37]/45 flex items-center justify-center shrink-0 overflow-hidden shadow-md">
+          <img src="./IMG_7316.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/NGRA-estetica/agendamento/refs/heads/main/IMG_7316.jpeg';" alt="NGRA Lavagem Automotiva" class="w-full h-full object-cover" />
         </div>
         <div class="min-w-0">
           <div class="flex items-center gap-2 flex-wrap">
@@ -118,7 +104,7 @@
         <a href="https://wa.me/5551985377892" target="_blank" rel="noopener" aria-label="Contato WhatsApp" class="w-9 h-9 lg:w-10 lg:h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-400 hover:bg-emerald-500/25 transition">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
         </a>
-        <button id="btn-auth-header" onclick="openAuthModal()" class="px-3.5 py-2 lg:px-4 lg:py-2.5 rounded-xl bg-[#1E2128] border border-[#D4AF37]/45 text-xs font-bold text-[#F3D478] hover:bg-[#D4AF37]/15 transition flex items-center gap-1.5">
+        <button type="button" id="btn-auth-header" onclick="openAuthModal()" class="px-3.5 py-2 lg:px-4 lg:py-2.5 rounded-xl bg-[#1E2128] border border-[#D4AF37]/45 text-xs font-bold text-[#F3D478] hover:bg-[#D4AF37]/15 transition flex items-center gap-1.5">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
           <span id="auth-header-label">Acessar</span>
         </button>
@@ -204,11 +190,17 @@
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div>
           <h3 class="text-base font-extrabold text-white">Agenda Completa</h3>
-          <p class="text-xs text-slate-400">Todos os agendamentos ativos organizados por data e horário.</p>
+          <p class="text-xs text-slate-400">Filtre por data ou andamento para gerenciar todos os agendamentos.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <select id="adm-agenda-filter-status" onchange="renderAdminAgenda()" class="px-3 py-1.5 rounded-xl bg-[#16181D] border border-white/15 text-xs text-white">
+            <option value="">Todos os Status</option>
+            <option value="pendente">🟡 Pendentes</option>
+            <option value="andamento">🔵 Em Andamento</option>
+            <option value="concluido">🟢 Concluídos</option>
+          </select>
           <input type="date" id="adm-agenda-filter-date" onchange="renderAdminAgenda()" class="px-3 py-1.5 rounded-xl bg-[#16181D] border border-white/15 text-xs text-white" />
-          <button type="button" onclick="document.getElementById('adm-agenda-filter-date').value=''; renderAdminAgenda();" class="px-3 py-1.5 rounded-xl bg-white/5 text-xs font-semibold text-slate-300">Todos</button>
+          <button type="button" onclick="resetAgendaFilters()" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-300">Limpar Filtros</button>
         </div>
       </div>
       <div id="adm-agenda-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
@@ -289,7 +281,10 @@
 
       <!-- Service Execution History -->
       <div class="card-glass rounded-2xl p-4 space-y-3">
-        <h3 class="text-sm font-extrabold text-white">Histórico de Serviços Realizados</h3>
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-extrabold text-white">Histórico de Serviços Realizados</h3>
+          <span id="adm-history-count" class="text-xs font-bold text-emerald-400">0 concluídos</span>
+        </div>
         <div id="adm-services-history" class="space-y-2 max-h-72 overflow-y-auto"></div>
       </div>
     </div>
@@ -309,11 +304,12 @@
 
       <!-- Standard Time Slots Management -->
       <div class="card-glass rounded-2xl p-4 space-y-3">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h4 class="text-sm font-extrabold text-white">Grade de Horários Padrão</h4>
             <p class="text-xs text-slate-400">Adicione ou remova horários disponíveis diariamente para os clientes.</p>
           </div>
+          <button type="button" onclick="restoreDefaultTimeSlots()" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-[11px] font-semibold text-slate-300">Restaurar Padrão</button>
         </div>
         <div id="adm-slots-list" class="flex flex-wrap gap-2"></div>
         <form onsubmit="adminAddTimeSlot(event)" class="flex gap-2 pt-2 border-t border-white/10">
@@ -366,8 +362,8 @@
         <p id="logged-user-name" class="text-sm font-bold text-white truncate"></p>
       </div>
       <div class="flex items-center gap-2 shrink-0">
-        <button onclick="openAuthModal()" class="px-3 py-1.5 rounded-lg gold-gradient text-[#0D0E11] text-xs font-extrabold">Acompanhar Meus Serviços</button>
-        <button onclick="logoutCurrentUser()" class="px-3 py-1.5 rounded-lg bg-red-500/15 text-xs font-semibold text-red-300 hover:bg-red-500/25">Sair</button>
+        <button type="button" onclick="openAuthModal()" class="px-3 py-1.5 rounded-lg gold-gradient text-[#0D0E11] text-xs font-extrabold">Acompanhar Meus Serviços</button>
+        <button type="button" onclick="logoutCurrentUser()" class="px-3 py-1.5 rounded-lg bg-red-500/15 text-xs font-semibold text-red-300 hover:bg-red-500/25">Sair</button>
       </div>
     </div>
 
@@ -390,7 +386,7 @@
                 <div class="w-12 h-12 rounded-xl bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-2xl shrink-0">🏍️</div>
                 <div>
                   <h3 class="font-bold text-white text-base">Moto</h3>
-                  <p class="text-xs text-slate-400">Lavagem detalhada a partir de <strong class="text-[#F3D478]">R$ 39,00</strong></p>
+                  <p class="text-xs text-slate-400">Lavagem detalhada a partir de <strong id="price-hint-moto" class="text-[#F3D478]">R$ 39,00</strong></p>
                 </div>
               </div>
               <span class="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-xs text-[#D4AF37] check-dot shrink-0">✓</span>
@@ -401,7 +397,7 @@
                 <div class="w-12 h-12 rounded-xl bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-2xl shrink-0">🚗</div>
                 <div>
                   <h3 class="font-bold text-white text-base">Hatch / Sedan</h3>
-                  <p class="text-xs text-slate-400">Carros de passeio a partir de <strong class="text-[#F3D478]">R$ 59,90</strong></p>
+                  <p class="text-xs text-slate-400">Carros de passeio a partir de <strong id="price-hint-hatch" class="text-[#F3D478]">R$ 59,90</strong></p>
                 </div>
               </div>
               <span class="w-6 h-6 rounded-full bg-[#D4AF37] text-[#0D0E11] font-bold flex items-center justify-center text-xs check-dot shrink-0">✓</span>
@@ -412,7 +408,7 @@
                 <div class="w-12 h-12 rounded-xl bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-2xl shrink-0">🚙</div>
                 <div>
                   <h3 class="font-bold text-white text-base">SUV / Pick-up</h3>
-                  <p class="text-xs text-slate-400">Utilitários e caminhonetes a partir de <strong class="text-[#F3D478]">R$ 79,90</strong></p>
+                  <p class="text-xs text-slate-400">Utilitários e caminhonetes a partir de <strong id="price-hint-suv" class="text-[#F3D478]">R$ 79,90</strong></p>
                 </div>
               </div>
               <span class="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-xs text-[#D4AF37] check-dot shrink-0">✓</span>
@@ -645,7 +641,7 @@
     <div class="card-glass w-full max-w-md rounded-3xl p-5 space-y-4 max-h-[90vh] overflow-y-auto border border-[#D4AF37]/40">
       <div class="flex items-center justify-between">
         <h3 id="auth-modal-title" class="text-base font-extrabold text-white">Acesso à Conta</h3>
-        <button onclick="closeAuthModal()" class="w-8 h-8 rounded-full bg-white/5 text-slate-400 hover:text-white">✕</button>
+        <button type="button" onclick="closeAuthModal()" class="w-8 h-8 rounded-full bg-white/5 text-slate-400 hover:text-white">✕</button>
       </div>
 
       <!-- Tabs: Entrar / Criar Conta -->
@@ -753,8 +749,19 @@
 
   <script>
     // =========================================================================
-    // 1. FIREBASE CONFIGURATION (PROJETO: ngra-lavagem)
+    // 1. SAFE STORAGE & FIREBASE CONFIGURATION (PROJETO: ngra-lavagem)
     // =========================================================================
+    function safeReadStorage(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return fallback;
+        const parsed = JSON.parse(raw);
+        return parsed !== null && parsed !== undefined ? parsed : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
     const firebaseConfig = {
       apiKey: "AIzaSyC2bgcAku5yPHE3voMKH0r-RkErHROfvQg",
       authDomain: "ngra-lavagem.firebaseapp.com",
@@ -768,14 +775,16 @@
     let db = null;
     let auth = null;
     try {
-      const app = firebase.initializeApp(firebaseConfig);
-      db = firebase.firestore();
-      auth = firebase.auth();
-      if (typeof firebase.analytics === 'function') {
-        firebase.analytics();
+      if (typeof firebase !== 'undefined' && firebase.initializeApp) {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+        auth = firebase.auth();
+        if (typeof firebase.analytics === 'function') {
+          firebase.analytics();
+        }
       }
     } catch (err) {
-      console.warn('Erro ao inicializar Firebase:', err);
+      console.warn('Modo offline / localStorage ativo:', err);
     }
 
     // =========================================================================
@@ -844,7 +853,7 @@
     ];
 
     const POA_GEO_FALLBACK = [
-      { keys: ['assis brasil'], lat: -30.0085, lng: -51.1322, label: 'Av. Assis Brasil - Sarandi / Passo d\'Areia, Porto Alegre - RS' },
+      { keys: ['assis brasil'], lat: -30.0085, lng: -51.1322, label: "Av. Assis Brasil - Sarandi / Passo d'Areia, Porto Alegre - RS" },
       { keys: ['baltazar', 'oliveira garcia'], lat: -30.0175, lng: -51.1230, label: 'Av. Baltazar de Oliveira Garcia - Rubem Berta, Porto Alegre - RS' },
       { keys: ['protasio', 'protásio'], lat: -30.0398, lng: -51.1585, label: 'Av. Protásio Alves - Petrópolis / Alto Petrópolis, Porto Alegre - RS' },
       { keys: ['sertorio', 'sertório'], lat: -30.0021, lng: -51.1568, label: 'Av. Sertório - Sarandi, Porto Alegre - RS' },
@@ -855,6 +864,9 @@
       { keys: ['canoas'], lat: -29.9189, lng: -51.1782, label: 'Centro - Canoas - RS' },
       { keys: ['viamao', 'viamão'], lat: -30.0811, lng: -51.0233, label: 'Centro - Viamão - RS' }
     ];
+
+    const storedSlots = safeReadStorage('ngra_timeslots', DEFAULT_TIME_SLOTS);
+    const storedServices = safeReadStorage('ngra_services', DEFAULT_SERVICES);
 
     let state = {
       step: 1,
@@ -870,12 +882,12 @@
       pickupCoords: null,
       kmRate: 2.50,
       isStoreOpen: true,
-      timeSlots: JSON.parse(localStorage.getItem('ngra_timeslots')) || DEFAULT_TIME_SLOTS,
-      services: JSON.parse(localStorage.getItem('ngra_services')) || DEFAULT_SERVICES,
-      bookings: JSON.parse(localStorage.getItem('ngra_bookings')) || [],
-      users: JSON.parse(localStorage.getItem('ngra_users')) || [],
-      supervisors: JSON.parse(localStorage.getItem('ngra_supervisors')) || [],
-      currentUser: JSON.parse(localStorage.getItem('ngra_session')) || null,
+      timeSlots: Array.isArray(storedSlots) && storedSlots.length ? storedSlots : [...DEFAULT_TIME_SLOTS],
+      services: Array.isArray(storedServices) && storedServices.length ? storedServices : [...DEFAULT_SERVICES],
+      bookings: safeReadStorage('ngra_bookings', []),
+      users: safeReadStorage('ngra_users', []),
+      supervisors: safeReadStorage('ngra_supervisors', []),
+      currentUser: safeReadStorage('ngra_session', null),
       recoveryTarget: null,
       recoveryCode: null
     };
@@ -923,6 +935,7 @@
           if (Array.isArray(data.services) && data.services.length) {
             state.services = data.services;
             localStorage.setItem('ngra_services', JSON.stringify(data.services));
+            updateVehicleStartingPrices();
             renderServices();
             if (isAdminLogged()) renderAdminServices();
             updateTotalsUI();
@@ -930,7 +943,9 @@
           if (typeof data.kmRate === 'number') {
             state.kmRate = data.kmRate;
             const rateInput = document.getElementById('adm-km-rate');
-            if (rateInput) rateInput.value = state.kmRate.toFixed(2);
+            if (rateInput && document.activeElement !== rateInput) {
+              rateInput.value = state.kmRate.toFixed(2);
+            }
           }
           if (typeof data.isStoreOpen === 'boolean') {
             state.isStoreOpen = data.isStoreOpen;
@@ -966,7 +981,7 @@
     // 5. HELPERS, STATUS & ROLE ROUTING (CUSTOMER VS ADMIN WORKSPACE)
     // =========================================================================
     function isAdminLogged() {
-      return state.currentUser && (state.currentUser.role === 'master' || state.currentUser.role === 'supervisor');
+      return Boolean(state.currentUser && (state.currentUser.role === 'master' || state.currentUser.role === 'supervisor'));
     }
 
     function getTodayISO() {
@@ -991,6 +1006,7 @@
 
     function showToast(msg) {
       const el = document.getElementById('toast');
+      if (!el) return;
       el.textContent = msg;
       el.classList.remove('hidden');
       clearTimeout(window._toastTimer);
@@ -1015,8 +1031,10 @@
       const panelBtn = document.getElementById('adm-panel-store-btn');
 
       if (state.isStoreOpen) {
-        pill.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-[10px] font-bold text-emerald-300';
-        pill.textContent = '● Aberto';
+        if (pill) {
+          pill.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-[10px] font-bold text-emerald-300';
+          pill.textContent = '● Aberto';
+        }
         if (closedBanner) closedBanner.classList.add('hidden');
         if (quickBtn) {
           quickBtn.className = 'px-3.5 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-extrabold transition';
@@ -1027,8 +1045,10 @@
           panelBtn.textContent = 'Estética Aberta (Clique para Fechar)';
         }
       } else {
-        pill.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500/20 border border-red-500/40 text-[10px] font-bold text-red-300';
-        pill.textContent = '● Fechado';
+        if (pill) {
+          pill.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500/20 border border-red-500/40 text-[10px] font-bold text-red-300';
+          pill.textContent = '● Fechado';
+        }
         if (closedBanner) closedBanner.classList.remove('hidden');
         if (quickBtn) {
           quickBtn.className = 'px-3.5 py-2 rounded-xl bg-red-500/20 border border-red-500/45 text-red-300 text-xs font-extrabold transition';
@@ -1070,6 +1090,20 @@
       return 'Hatch / Sedan';
     }
 
+    function updateVehicleStartingPrices() {
+      if (!state.services.length) return;
+      const minMoto = Math.min(...state.services.map(s => Number(s.prices?.moto || 0)));
+      const minHatch = Math.min(...state.services.map(s => Number(s.prices?.hatch || 0)));
+      const minSuv = Math.min(...state.services.map(s => Number(s.prices?.suv || 0)));
+
+      const elM = document.getElementById('price-hint-moto');
+      const elH = document.getElementById('price-hint-hatch');
+      const elS = document.getElementById('price-hint-suv');
+      if (elM) elM.textContent = formatBRL(minMoto);
+      if (elH) elH.textContent = formatBRL(minHatch);
+      if (elS) elS.textContent = formatBRL(minSuv);
+    }
+
     function calculateServicesSubtotal() {
       return state.selectedServices.reduce((acc, id) => {
         const srv = state.services.find(s => s.id === id);
@@ -1085,7 +1119,8 @@
 
     function updateTotalsUI() {
       const total = calculateGrandTotal();
-      document.getElementById('footer-total').textContent = formatBRL(total);
+      const footerTotal = document.getElementById('footer-total');
+      if (footerTotal) footerTotal.textContent = formatBRL(total);
       const desktopTotal = document.getElementById('desktop-total');
       if (desktopTotal) desktopTotal.textContent = formatBRL(total);
       const sumTotal = document.getElementById('summary-total');
@@ -1122,6 +1157,7 @@
     // =========================================================================
     function setupDefaultDate() {
       const input = document.getElementById('booking-date');
+      if (!input) return;
       const now = new Date();
       if (now.getDay() === 0) now.setDate(now.getDate() + 1);
       const yyyy = now.getFullYear();
@@ -1138,17 +1174,24 @@
       document.querySelectorAll('.vehicle-card').forEach(card => {
         card.classList.remove('selected-card');
         const dot = card.querySelector('.check-dot');
-        dot.classList.remove('bg-[#D4AF37]', 'text-[#0D0E11]', 'font-bold');
-        dot.classList.add('border', 'border-white/20', 'text-[#D4AF37]');
+        if (dot) {
+          dot.classList.remove('bg-[#D4AF37]', 'text-[#0D0E11]', 'font-bold');
+          dot.classList.add('border', 'border-white/20', 'text-[#D4AF37]');
+        }
       });
 
       const active = document.getElementById(`veh-${type}`);
-      active.classList.add('selected-card');
-      const activeDot = active.querySelector('.check-dot');
-      activeDot.classList.remove('border', 'border-white/20', 'text-[#D4AF37]');
-      activeDot.classList.add('bg-[#D4AF37]', 'text-[#0D0E11]', 'font-bold');
+      if (active) {
+        active.classList.add('selected-card');
+        const activeDot = active.querySelector('.check-dot');
+        if (activeDot) {
+          activeDot.classList.remove('border', 'border-white/20', 'text-[#D4AF37]');
+          activeDot.classList.add('bg-[#D4AF37]', 'text-[#0D0E11]', 'font-bold');
+        }
+      }
 
-      document.getElementById('step2-veh-label').textContent = getVehicleLabel(type);
+      const step2Label = document.getElementById('step2-veh-label');
+      if (step2Label) step2Label.textContent = getVehicleLabel(type);
       renderServices();
       updateTotalsUI();
     }
@@ -1157,6 +1200,10 @@
       const container = document.getElementById('services-list');
       if (!container) return;
       container.innerHTML = '';
+
+      // Ensure at least one valid selectedService if current list changed
+      const validIds = state.services.map(s => s.id);
+      state.selectedServices = state.selectedServices.filter(id => validIds.includes(id));
 
       state.services.forEach(srv => {
         const isSelected = state.selectedServices.includes(srv.id);
@@ -1190,12 +1237,12 @@
     function handleDateChange() {
       const input = document.getElementById('booking-date');
       const warn = document.getElementById('sunday-warning');
-      if (!input.value) return;
+      if (!input || !input.value) return;
 
       const [y, m, d] = input.value.split('-').map(Number);
       const dt = new Date(y, m - 1, d);
       if (dt.getDay() === 0) {
-        warn.classList.remove('hidden');
+        if (warn) warn.classList.remove('hidden');
         state.date = '';
         state.time = '';
         renderTimeSlots();
@@ -1203,7 +1250,7 @@
         return;
       }
 
-      warn.classList.add('hidden');
+      if (warn) warn.classList.add('hidden');
       state.date = input.value;
       state.time = '';
       renderTimeSlots();
@@ -1629,8 +1676,8 @@
       }
 
       const msgLines = [
-        `*NOVO AGENDAMENTO - NGRA LAVAGEM AUTOMOTIVA* 🚗✨`,
-        ``,
+        '*NOVO AGENDAMENTO - NGRA LAVAGEM AUTOMOTIVA* 🚗✨',
+        '',
         `*Cliente:* ${name}`,
         `*WhatsApp:* ${phone}`,
         `*Veículo:* ${getVehicleLabel(state.vehicle)} (${car || 'Não informado'})`,
@@ -1638,7 +1685,7 @@
         `*Serviços:* ${selectedObjs.map(s => s.name).join(', ')}`,
         state.deliveryMode === 'pickup'
           ? `*Modalidade:* Leva e Traz (${bookingRecord.pickupAddress}) - Taxa: ${formatBRL(state.pickupFee)}`
-          : `*Modalidade:* Levar até a lavagem (Rua D Vl Amazonia, 244 - Rubem Berta)`,
+          : '*Modalidade:* Levar até a lavagem (Rua D Vl Amazonia, 244 - Rubem Berta)',
         `*Total:* *${formatBRL(total)}*`
       ];
 
@@ -1876,18 +1923,18 @@
       const bannerName = document.getElementById('logged-user-name');
 
       if (!state.currentUser) {
-        label.textContent = 'Acessar';
-        banner.classList.add('hidden');
+        if (label) label.textContent = 'Acessar';
+        if (banner) banner.classList.add('hidden');
         return;
       }
 
       if (isAdminLogged()) {
-        label.textContent = 'Painel ADM';
-        banner.classList.add('hidden');
+        if (label) label.textContent = 'Painel ADM';
+        if (banner) banner.classList.add('hidden');
       } else {
-        label.textContent = state.currentUser.username || state.currentUser.name.split(' ')[0];
-        bannerName.textContent = `${state.currentUser.name} ${state.currentUser.username ? `(@${state.currentUser.username})` : ''}`;
-        banner.classList.remove('hidden');
+        if (label) label.textContent = state.currentUser.username || state.currentUser.name.split(' ')[0];
+        if (bannerName) bannerName.textContent = `${state.currentUser.name} ${state.currentUser.username ? `(@${state.currentUser.username})` : ''}`;
+        if (banner) banner.classList.remove('hidden');
       }
     }
 
@@ -1903,6 +1950,8 @@
 
       const myBookings = state.bookings.filter(b => normalizePhone(b.customerPhone) === normalizePhone(u.phone));
       const list = document.getElementById('customer-bookings-list');
+      if (!list) return;
+
       if (myBookings.length === 0) {
         list.innerHTML = '<p class="text-xs text-slate-400">Nenhum agendamento encontrado para este telefone.</p>';
         return;
@@ -2036,14 +2085,19 @@
     function buildAdminBookingCardHTML(b) {
       const st = (b.status || 'pendente').toLowerCase();
       const phoneClean = normalizePhone(b.customerPhone);
-      const readyMsg = encodeURIComponent(
-        `Olá *${b.customerName}*! 🚗✨
+      const carSuffix = b.carModel && b.carModel !== 'Não informado' ? ` - ${b.carModel}` : '';
+      const deliveryNote = b.deliveryMode === 'pickup'
+        ? 'Nossa equipe já está organizando a entrega no seu endereço.'
+        : 'Seu veículo já está pronto para retirada em nossa sede (Rua D Vl Amazonia, 244 - Rubem Berta).';
 
-A lavagem do seu veículo (*${b.vehicleCategory}*${b.carModel && b.carModel !== 'Não informado' ? ` - ${b.carModel}` : ''}) na *NGRA Lavagem Automotiva* foi *CONCLUÍDA* com sucesso!
-
-${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no seu endereço.' : 'Seu veículo já está pronto para retirada em nossa sede (Rua D Vl Amazonia, 244 - Rubem Berta).'}`
-      );
-      const waReadyLink = phoneClean ? `https://wa.me/55${phoneClean}?text=${readyMsg}` : '#';
+      const readyLines = [
+        `Olá *${b.customerName}*! 🚗✨`,
+        '',
+        `A lavagem do seu veículo (*${b.vehicleCategory}*${carSuffix}) na *NGRA Lavagem Automotiva* foi *CONCLUÍDA* com sucesso!`,
+        '',
+        deliveryNote
+      ];
+      const waReadyLink = phoneClean ? `https://wa.me/55${phoneClean}?text=${encodeURIComponent(readyLines.join('\n'))}` : '#';
 
       return `
         <div class="card-glass rounded-2xl p-4 border border-white/10 space-y-2.5 text-xs">
@@ -2112,13 +2166,23 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
       list.innerHTML = todayList.map(buildAdminBookingCardHTML).join('');
     }
 
+    function resetAgendaFilters() {
+      const dEl = document.getElementById('adm-agenda-filter-date');
+      const sEl = document.getElementById('adm-agenda-filter-status');
+      if (dEl) dEl.value = '';
+      if (sEl) sEl.value = '';
+      renderAdminAgenda();
+    }
+
     function renderAdminAgenda() {
       const list = document.getElementById('adm-agenda-list');
       if (!list) return;
 
       const filterDate = document.getElementById('adm-agenda-filter-date')?.value || '';
+      const filterStatus = document.getElementById('adm-agenda-filter-status')?.value || '';
+
       const filtered = state.bookings
-        .filter(b => !filterDate || b.date === filterDate)
+        .filter(b => (!filterDate || b.date === filterDate) && (!filterStatus || (b.status || 'pendente').toLowerCase() === filterStatus))
         .sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`));
 
       if (filtered.length === 0) {
@@ -2199,6 +2263,8 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
 
       const days = Object.values(byDate).sort((a, b) => b.date.localeCompare(a.date));
       const historyEl = document.getElementById('fin-daily-history');
+      if (!historyEl) return;
+
       if (days.length === 0) {
         historyEl.innerHTML = '<p class="text-xs text-slate-400">Ainda não há movimentação financeira registrada.</p>';
         return;
@@ -2228,7 +2294,7 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
       list.innerHTML = state.services.map((s, idx) => `
         <div class="card-glass rounded-2xl p-3.5 border border-white/10 text-xs space-y-2.5">
           <div class="flex items-center justify-between gap-2">
-            <input type="text" value="${s.name}" onchange="updateServiceField(${idx}, 'name', this.value)" class="flex-1 px-2.5 py-1.5 rounded-lg bg-[#0D0E11] border border-white/15 font-bold text-white" />
+            <input type="text" value="${s.name.replace(/"/g, '&quot;')}" onchange="updateServiceField(${idx}, 'name', this.value)" class="flex-1 px-2.5 py-1.5 rounded-lg bg-[#0D0E11] border border-white/15 font-bold text-white" />
             <button type="button" onclick="removeAdminService(${idx})" class="px-2.5 py-1.5 rounded-lg bg-red-500/15 text-red-300 font-bold hover:bg-red-500/25">Remover</button>
           </div>
           <div>
@@ -2263,6 +2329,7 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
     async function updateServicePrice(idx, cat, val) {
       state.services[idx].prices[cat] = parseFloat(val) || 0;
       await syncConfigToCloud();
+      updateVehicleStartingPrices();
       renderServices();
       updateTotalsUI();
       showToast('Preço atualizado na nuvem!');
@@ -2275,6 +2342,7 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
       }
       state.services.splice(idx, 1);
       await syncConfigToCloud();
+      updateVehicleStartingPrices();
       renderAdminServices();
       renderServices();
       showToast('Serviço removido.');
@@ -2297,6 +2365,7 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
 
       await syncConfigToCloud();
       e.target.reset();
+      updateVehicleStartingPrices();
       renderAdminServices();
       renderServices();
       showToast('Novo modo de lavagem adicionado!');
@@ -2304,9 +2373,12 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
 
     function renderAdminServicesHistory() {
       const container = document.getElementById('adm-services-history');
+      const countEl = document.getElementById('adm-history-count');
       if (!container) return;
 
       const concluded = state.bookings.filter(b => (b.status || '').toLowerCase() === 'concluido');
+      if (countEl) countEl.textContent = `${concluded.length} concluído(s)`;
+
       if (concluded.length === 0) {
         container.innerHTML = '<p class="text-xs text-slate-400">Nenhum serviço marcado como concluído ainda.</p>';
         return;
@@ -2315,7 +2387,7 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
       container.innerHTML = concluded.map(b => `
         <div class="p-2.5 rounded-xl bg-[#0D0E11] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
           <div>
-            <strong class="text-white">${b.customerName}</strong> • <span class="text-slate-400">${b.date.split('-').reverse().join('/')} (${b.vehicleCategory})</span>
+            <strong class="text-white">${b.customerName}</strong> • <span class="text-slate-400">${b.date.split('-').reverse().join('/')} às ${b.time} (${b.vehicleCategory})</span>
             <div class="text-slate-300">${(b.services || []).join(', ')}</div>
           </div>
           <span class="font-extrabold text-emerald-400 shrink-0">${formatBRL(b.total)}</span>
@@ -2381,6 +2453,14 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
       renderAdminTimeSlots();
       renderTimeSlots();
       showToast('Horário removido da grade padrão.');
+    }
+
+    async function restoreDefaultTimeSlots() {
+      state.timeSlots = [...DEFAULT_TIME_SLOTS];
+      await syncConfigToCloud();
+      renderAdminTimeSlots();
+      renderTimeSlots();
+      showToast('Horários padrão restaurados!');
     }
 
     function renderAdminSupervisors() {
@@ -2462,9 +2542,10 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
     // =========================================================================
     // 15. BOOTSTRAP
     // =========================================================================
-    window.addEventListener('DOMContentLoaded', () => {
+    function bootstrapApp() {
       detectDeviceEnvironment();
       setupDefaultDate();
+      updateVehicleStartingPrices();
       selectVehicle('hatch');
       renderServices();
       renderTimeSlots();
@@ -2472,7 +2553,13 @@ ${b.deliveryMode === 'pickup' ? 'Nossa equipe já está organizando a entrega no
       updateHeaderAuthUI();
       applyRoleWorkspaceMode();
       initCloudSync();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', bootstrapApp);
+    } else {
+      bootstrapApp();
+    }
   </script>
 </body>
 </html>
