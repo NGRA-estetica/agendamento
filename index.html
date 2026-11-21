@@ -844,7 +844,7 @@
     ];
 
     const POA_GEO_FALLBACK = [
-      { keys: ['assis brasil'], lat: -30.0085, lng: -51.1322, label: 'Av. Assis Brasil - Sarandi / Passo d'Areia, Porto Alegre - RS' },
+      { keys: ['assis brasil'], lat: -30.0085, lng: -51.1322, label: 'Av. Assis Brasil - Sarandi / Passo d\'Areia, Porto Alegre - RS' },
       { keys: ['baltazar', 'oliveira garcia'], lat: -30.0175, lng: -51.1230, label: 'Av. Baltazar de Oliveira Garcia - Rubem Berta, Porto Alegre - RS' },
       { keys: ['protasio', 'protásio'], lat: -30.0398, lng: -51.1585, label: 'Av. Protásio Alves - Petrópolis / Alto Petrópolis, Porto Alegre - RS' },
       { keys: ['sertorio', 'sertório'], lat: -30.0021, lng: -51.1568, label: 'Av. Sertório - Sarandi, Porto Alegre - RS' },
@@ -1642,8 +1642,7 @@
         `*Total:* *${formatBRL(total)}*`
       ];
 
-      const waUrl = `https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(msgLines.join('
-'))}`;
+      const waUrl = `https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(msgLines.join('\n'))}`;
 
       for (let s = 1; s <= 4; s++) document.getElementById(`step-${s}`).classList.add('hidden');
       document.getElementById('footer-nav').classList.add('hidden');
