@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NGRA Lavagem Automotiva | Agendamento</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Rajdhani -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        ngra: {
+                            black: '#0b0b0b',
+                            bg: '#141414',
+                            card: '#1e1e1e',
+                            gold: '#d4af37',
+                            goldLight: '#f3d98b',
+                            goldDark: '#9a8133'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #e5e5e5;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-step {
+            animation: fadeSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex justify-center bg-[#0b0b0b] font-sans antialiased selection:bg-[#d4af37] selection:text-black">
+
+    <!-- Container principal responsivo estilo App Mobile -->
+    <div class="w-full max-w-md bg-[#141414] min-h-screen flex flex-col relative shadow-2xl border-x border-neutral-800/80">
+
+        <!-- CABEÇALHO COM LOGOTIPO OFICIAL NGRA -->
+        <header class="sticky top-0 z-30 bg-[#0b0b0b]/95 backdrop-blur-md border-b-2 border-[#d4af37] px-4 py-3 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3 min-w-0">
+                <!-- Logotipo Vetorial Oficial NGRA Lavagem Automotiva -->
+                <div class="w-20 h-12 rounded-xl bg-black border border-[#d4af37]/50 flex items-center justify-center p-1 shadow-lg shadow-[#d4af37]/10 shrink-0">
+                    <svg viewBox="0 0 500 205" class="w-full h-full overflow-visible" xmlns="http://www.w3.org/2000/svg" aria-label="Logo NGRA Lavagem Automotiva">
+                        <defs>
+                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f5e096" />
+                                <stop offset="45%" stop-color="#d4af37" />
+                                <stop offset="85%" stop-color="#8c732b" />
+                                <stop offset="100%" stop-color="#ebd181" />
+                            </linearGradient>
+                            <linearGradient id="darkMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#262626" />
+                                <stop offset="100%" stop-color="#050505" />
+                            </linearGradient>
+                            <filter id="goldGlow" x="-15%" y="-15%" width="130%" height="130%">
+                                <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.9"/>
+                            </filter>
+                        </defs>
+
+                        <!-- Escudo Traseiro -->
+                        <path d="M 110 98 L 110 38 C 165 15, 335 15, 390 38 L 390 88" fill="none" stroke="url(#darkMetal)" stroke-width="14" stroke-linecap="round" filter="url(#goldGlow)"/>
+                        <path d="M 110 98 L 110 38 C 165 15, 335 15, 390 38 L 390 88" fill="none" stroke="url(#goldGrad)" stroke-width="3.5" stroke-linecap="round"/>
+
+                        <!-- Arco Dinâmico Dourado Metalizado nascendo do N -->
+                        <path d="M 122 126 C 128 52, 240 6, 408 28 C 305 16, 175 56, 152 126 Z" fill="url(#goldGrad)" filter="url(#goldGlow)"/>
+                        <path d="M 114 126 C 120 46, 232 4, 398 22 C 292 12, 162 52, 140 126 Z" fill="url(#darkMetal)"/>
+
+                        <!-- Estrelas de Brilho -->
+                        <path d="M 332 42 L 336 53 L 347 57 L 336 61 L 332 72 L 328 61 L 317 57 L 328 53 Z" fill="url(#goldGrad)"/>
+                        <path d="M 358 58 L 361 65 L 368 68 L 361 71 L 358 78 L 355 71 L 348 68 L 355 65 Z" fill="url(#goldGrad)"/>
+
+                        <!-- Silhueta do Carro Esportivo -->
+                        <path d="M 168 92 C 178 74, 228 60, 290 61 C 336 62, 378 75, 402 85 C 412 90, 414 97, 404 101 L 165 101 C 158 98, 162 94, 168 92 Z" fill="url(#darkMetal)" stroke="url(#goldGrad)" stroke-width="3" filter="url(#goldGlow)"/>
+                        <path d="M 212 78 C 242 66, 296 66, 332 78 C 300 75, 250 75, 212 78 Z" fill="url(#goldGrad)"/>
+
+                        <!-- Ondas de Espuma na Base -->
+                        <path d="M 155 104 C 162 96, 178 96, 185 101 C 195 92, 218 92, 228 101 C 238 96, 254 97, 260 104 L 310 104 C 318 96, 336 96, 345 101 C 355 93, 378 93, 388 101 C 396 97, 408 98, 412 104 Z" fill="url(#darkMetal)" stroke="url(#goldGrad)" stroke-width="2.5"/>
+
+                        <!-- Tipografia NGRA -->
+                        <text x="250" y="156" text-anchor="middle" font-family="'Rajdhani', sans-serif" font-weight="700" font-size="76" letter-spacing="4" fill="#050505" stroke="url(#goldGrad)" stroke-width="3.2" filter="url(#goldGlow)">NGRA</text>
+
+                        <!-- Linha Divisória Dourada -->
+                        <line x1="62" y1="164" x2="438" y2="164" stroke="url(#goldGrad)" stroke-width="3"/>
+
+                        <!-- Faixa Inclinada Inferior LAVAGEM AUTOMOTIVA -->
+                        <polygon points="66,170 442,170 430,200 54,200" fill="url(#darkMetal)" stroke="url(#goldGrad)" stroke-width="2.5" filter="url(#goldGlow)"/>
+                        <text x="248" y="191" text-anchor="middle" font-family="'Rajdhani', sans-serif" font-weight="700" font-size="22" letter-spacing="3" fill="url(#goldGrad)">LAVAGEM AUTOMOTIVA</text>
+                    </svg>
+                </div>
+
+                <div class="min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h1 class="font-display font-bold text-lg tracking-wider text-white leading-none truncate">NGRA ESTÉTICA</h1>
+                    </div>
+                    <p class="text-[11px] text-neutral-400 flex items-center gap-1 mt-1 truncate">
+                        <i class="ph-fill ph-map-pin text-[#d4af37] shrink-0"></i>
+                        <span class="truncate">Rua D, 290 • Rubem Berta, POA</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Botão discreto de acesso ao Painel Admin -->
+            <button onclick="toggleAdminPanel()" id="admin-toggle-btn" class="p-2.5 rounded-xl bg-[#1e1e1e] hover:bg-neutral-800 border border-[#d4af37]/30 text-[#d4af37] transition active:scale-95 shrink-0 flex items-center gap-1.5 text-xs font-semibold" title="Painel Administrativo">
+                <i id="admin-toggle-icon" class="ph-fill ph-lock-key text-base"></i>
+                <span id="admin-toggle-text" class="hidden sm:inline">Admin</span>
+            </button>
+        </header>
+
+        <!-- NOTIFICAÇÃO FLUTUANTE -->
+        <div id="toast-box" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm pointer-events-none flex flex-col gap-2"></div>
+
+        <!-- ========================================================= -->
+        <!-- FLUXO DO CLIENTE (4 ETAPAS)                               -->
+        <!-- ========================================================= -->
+        <main id="client-flow" class="flex-1 flex flex-col pb-24">
+            
+            <!-- Barra de Progresso das 4 Etapas -->
+            <div class="px-5 pt-4 pb-3 bg-gradient-to-b from-[#0b0b0b]/60 to-transparent">
+                <div class="flex items-center justify-between mb-2">
+                    <span id="step-badge" class="text-xs font-bold uppercase tracking-wider text-[#d4af37]">Etapa 1 de 4</span>
+                    <span id="step-name" class="text-xs text-neutral-400">Porte do Veículo</span>
+                </div>
+                <div class="grid grid-cols-4 gap-2">
+                    <div id="bar-1" class="h-1.5 rounded-full bg-[#d4af37] transition-all duration-300"></div>
+                    <div id="bar-2" class="h-1.5 rounded-full bg-neutral-800 transition-all duration-300"></div>
+                    <div id="bar-3" class="h-1.5 rounded-full bg-neutral-800 transition-all duration-300"></div>
+                    <div id="bar-4" class="h-1.5 rounded-full bg-neutral-800 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Conteúdo Dinâmico das Etapas -->
+            <div id="step-container" class="px-4 flex-1"></div>
+
+        </main>
+
+        <!-- RODAPÉ FIXO DO CLIENTE -->
+        <footer id="client-footer" class="fixed bottom-0 w-full max-w-md bg-[#0b0b0b]/95 backdrop-blur-md border-t border-neutral-800 px-4 py-3 z-30 flex items-center justify-between gap-2.5">
+            <button id="btn-back" onclick="goStep(state.step - 1)" class="hidden p-3.5 rounded-xl bg-[#1e1e1e] hover:bg-neutral-800 border border-neutral-700 text-neutral-200 transition active:scale-95">
+                <i class="ph-bold ph-arrow-left text-lg"></i>
+            </button>
+
+            <div class="flex-1 min-w-0">
+                <span id="footer-label" class="block text-[10px] uppercase tracking-wider text-neutral-400">A partir de</span>
+                <span id="footer-total" class="text-lg font-bold font-display text-[#d4af37] tracking-wide">R$ 39,00</span>
+            </div>
+
+            <!-- Botão flutuante integrado de dúvida no WhatsApp -->
+            <a href="https://wa.me/5551985377892?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20os%20servi%C3%A7os%20da%20NGRA%20Lavagem%20Automotiva." target="_blank" rel="noopener noreferrer"
+               class="p-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-400 transition active:scale-95 shrink-0" title="WhatsApp (51) 98537-7892">
+                <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+            </a>
+
+            <button id="btn-next" onclick="handleNextStep()" class="px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b59124] hover:from-[#e6c453] hover:to-[#c9a332] text-black font-bold text-sm shadow-lg shadow-[#d4af37]/20 transition active:scale-95 flex items-center gap-2 shrink-0">
+                <span id="btn-next-label">Avançar</span>
+                <i id="btn-next-icon" class="ph-bold ph-arrow-right"></i>
+            </button>
+        </footer>
+
+        <!-- ========================================================= -->
+        <!-- PAINEL ADMINISTRATIVO                                     -->
+        <!-- ========================================================= -->
+        <section id="admin-panel" class="hidden flex-1 flex-col pb-10 px-4 pt-4">
+            
+            <div class="flex items-center justify-between mb-3">
+                <div>
+                    <h2 class="font-display font-bold text-xl text-white">PAINEL ADMINISTRATIVO</h2>
+                    <p class="text-[11px] text-neutral-400">Rua D, 290 • Rubem Berta, Porto Alegre - RS</p>
+                </div>
+                <button onclick="closeAdminPanel()" class="px-3 py-2 rounded-xl bg-[#1e1e1e] border border-neutral-700 text-xs font-semibold text-neutral-300 hover:text-white transition">
+                    Voltar ao App
+                </button>
+            </div>
+
+            <!-- Botão de 1 clique para copiar link dos clientes -->
+            <button onclick="copyClientAppLink()" class="w-full mb-4 py-3 px-4 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b59124] text-black font-bold text-xs shadow-lg shadow-[#d4af37]/15 flex items-center justify-center gap-2 transition active:scale-95">
+                <i class="ph-bold ph-link text-base"></i>
+                Copiar Link do Aplicativo para Clientes
+            </button>
+
+            <!-- 4 Abas do Painel Admin -->
+            <div class="grid grid-cols-4 gap-1 bg-[#0b0b0b] p-1 rounded-xl border border-neutral-800 mb-4">
+                <button onclick="switchAdminTab('agendamentos')" id="tab-btn-agendamentos" class="py-2 px-1 text-[11px] font-bold rounded-lg bg-[#d4af37] text-black transition truncate">Agenda</button>
+                <button onclick="switchAdminTab('financeiro')" id="tab-btn-financeiro" class="py-2 px-1 text-[11px] font-semibold rounded-lg text-neutral-400 hover:text-white transition truncate">Financeiro</button>
+                <button onclick="switchAdminTab('servicos')" id="tab-btn-servicos" class="py-2 px-1 text-[11px] font-semibold rounded-lg text-neutral-400 hover:text-white transition truncate">Serviços</button>
+                <button onclick="switchAdminTab('bloqueios')" id="tab-btn-bloqueios" class="py-2 px-1 text-[11px] font-semibold rounded-lg text-neutral-400 hover:text-white transition truncate">Bloquear</button>
+            </div>
+
+            <!-- ABA 1: AGENDAMENTOS -->
+            <div id="admin-tab-agendamentos" class="space-y-3">
+                <div id="admin-bookings-container" class="space-y-3"></div>
+            </div>
+
+            <!-- ABA 2: RESUMO FINANCEIRO -->
+            <div id="admin-tab-financeiro" class="hidden space-y-3">
+                <div class="bg-[#1e1e1e] border border-[#d4af37]/40 rounded-2xl p-5">
+                    <div class="flex items-center justify-between text-neutral-400 mb-2">
+                        <span class="text-xs uppercase tracking-wider font-semibold">Faturamento Total Previsto</span>
+                        <i class="ph-fill ph-currency-circle-dollar text-2xl text-[#d4af37]"></i>
+                    </div>
+                    <p id="admin-total-revenue" class="text-3xl font-bold font-display text-[#d4af37]">R$ 0,00</p>
+                    <p id="admin-revenue-sub" class="text-xs text-neutral-400 mt-1">Soma de todos os agendamentos registrados</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-4">
+                        <span class="text-[11px] text-neutral-400 block">Pendentes / Em Andamento</span>
+                        <span id="admin-active-count" class="text-xl font-bold font-display text-white mt-1 block">0</span>
+                    </div>
+                    <div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-4">
+                        <span class="text-[11px] text-neutral-400 block">Serviços Concluídos</span>
+                        <span id="admin-done-count" class="text-xl font-bold font-display text-emerald-400 mt-1 block">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 3: PREÇOS / SERVIÇOS E LEVA E TRAZ -->
+            <div id="admin-tab-servicos" class="hidden space-y-4">
+                <!-- Configurar Taxa Leva e Traz -->
+                <div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-4 space-y-3">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+                        <i class="ph-fill ph-house-line text-[#d4af37]"></i> Taxa de Deslocamento (Leva e Traz)
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] text-neutral-400 mb-1">Valor por KM (R$)</label>
+                            <input type="number" step="0.10" id="cfg-km-rate" onchange="saveDeliverySettings()" class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-neutral-400 mb-1">Taxa Mínima (R$)</label>
+                            <input type="number" step="1.00" id="cfg-min-rate" onchange="saveDeliverySettings()" class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adicionar Novo Serviço -->
+                <div class="bg-[#1e1e1e] border border-[#d4af37]/30 rounded-2xl p-4 space-y-3">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+                        <i class="ph-bold ph-plus-circle text-[#d4af37]"></i> Cadastrar Novo Serviço
+                    </h3>
+                    <input type="text" id="new-srv-name" placeholder="Nome (ex: Lavagem de Motor)" class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3 py-2.5 text-xs text-white placeholder-neutral-500 focus:border-[#d4af37] focus:outline-none">
+                    <input type="text" id="new-srv-desc" placeholder="Descrição do serviço..." class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3 py-2.5 text-xs text-white placeholder-neutral-500 focus:border-[#d4af37] focus:outline-none">
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-neutral-400 mb-1">Moto (R$)</label>
+                            <input type="number" step="0.10" id="new-srv-moto" placeholder="0,00" class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-2.5 py-2 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-neutral-400 mb-1">Hatch/Sedan</label>
+                            <input type="number" step="0.10" id="new-srv-hatch" placeholder="0,00" class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-2.5 py-2 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-neutral-400 mb-1">SUV/Pick-up</label>
+                            <input type="number" step="0.10" id="new-srv-suv" placeholder="0,00" class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-2.5 py-2 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+                    </div>
+                    <button onclick="addNewService()" class="w-full py-2.5 rounded-xl bg-[#d4af37] hover:bg-[#e6c453] text-black font-bold text-xs transition active:scale-95">
+                        Adicionar Serviço
+                    </button>
+                </div>
+
+                <!-- Lista de Serviços Existentes -->
+                <div class="space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-400">Serviços Ativos na Tabela</h3>
+                    <div id="admin-services-container" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- ABA 4: BLOQUEAR DATAS / HORÁRIOS -->
+            <div id="admin-tab-bloqueios" class="hidden space-y-4">
+                <div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-4 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+                            <i class="ph-fill ph-clock-countdown text-[#d4af37]"></i> Gestão de Horários e Datas
+                        </h3>
+                    </div>
+                    <p class="text-xs text-neutral-400">Escolha uma data abaixo para bloquear/desbloquear horários específicos ou fechar o dia inteiro (domingos já são fechados automaticamente):</p>
+                    
+                    <div class="flex gap-2">
+                        <input type="date" id="block-date-input" onchange="onAdminBlockDateChange(this.value)" class="flex-1 bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        <button id="btn-toggle-full-day" onclick="toggleFullDayBlock()" class="px-3.5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs transition active:scale-95 shrink-0">
+                            Fechar Dia Inteiro
+                        </button>
+                    </div>
+
+                    <!-- Grade interativa de horários da data selecionada no Admin -->
+                    <div id="admin-slot-selector-box" class="pt-3 border-t border-neutral-800 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span id="admin-slot-date-label" class="text-[11px] font-semibold text-neutral-300">Horários do dia:</span>
+                            <span class="text-[10px] text-neutral-400">Toque para alternar</span>
+                        </div>
+                        <div id="admin-time-slots-grid" class="grid grid-cols-3 gap-2"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-400">Bloqueios Ativos (Datas e Horários)</h4>
+                    <div id="admin-blocked-list" class="space-y-2"></div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script>
+        // --- 1. CONFIGURAÇÕES E ESTADO INICIAL ---
+        const WHATSAPP_PHONE = "5551985377892";
+        const STORAGE_KEY = "ngra_app_state_v4";
+
+        const VEHICLE_SIZES = [
+            { id: 'moto', label: 'Moto', desc: 'Motos e triciclos', icon: 'ph-motorcycle', fromPrice: 39.00 },
+            { id: 'hatch', label: 'Hatch / Sedan', desc: 'Carros de passeio médios', icon: 'ph-car-profile', fromPrice: 59.90 },
+            { id: 'suv', label: 'SUV / Pick-up', desc: 'Utilitários e caminhonetes', icon: 'ph-jeep', fromPrice: 79.90 }
+        ];
+
+        const TIME_SLOTS = ['08:00', '09:00', '10:00', '11:00', '13:30', '14:30', '15:30', '16:30', '17:30'];
+
+        const DEFAULT_SERVICES = [
+            {
+                id: 1,
+                name: 'Lavagem Completa',
+                desc: 'Lavagem externa detalhada, aspiração interna completa, limpeza de painel e pretinho nos pneus.',
+                prices: { moto: 39.00, hatch: 59.90, suv: 79.90 }
+            },
+            {
+                id: 2,
+                name: 'Limpeza Interna Detalhada',
+                desc: 'Higienização profunda de bancos, carpetes, teto, portas e dutos de ar-condicionado.',
+                prices: { moto: 60.00, hatch: 120.00, suv: 150.00 }
+            },
+            {
+                id: 3,
+                name: 'Proteção Cerâmica / Vitrificação',
+                desc: 'Proteção de pintura de altíssima resistência hidrofóbica e brilho espelhado duradouro.',
+                prices: { moto: 350.00, hatch: 590.00, suv: 790.00 }
+            }
+        ];
+
+        let state = {
+            step: 1,
+            adminOpen: false,
+            adminTab: 'agendamentos',
+            booking: {
+                porte: 'hatch',
+                selectedServices: [1],
+                date: '',
+                time: '09:00',
+                deliveryType: 'shop', // 'shop' ou 'home'
+                distanceKm: 5,
+                address: '',
+                clientName: '',
+                clientPhone: '',
+                vehicleModel: ''
+            },
+            services: JSON.parse(JSON.stringify(DEFAULT_SERVICES)),
+            deliveryConfig: {
+                kmRate: 3.50,
+                minRate: 15.00
+            },
+            appointments: [
+                {
+                    id: 1001,
+                    clientName: 'Carlos Eduardo',
+                    clientPhone: '(51) 99123-4567',
+                    vehicleModel: 'Honda Civic - IXY9J88',
+                    porteLabel: 'Hatch / Sedan',
+                    services: ['Lavagem Completa'],
+                    date: getTomorrowISO(),
+                    time: '09:00',
+                    deliveryType: 'shop',
+                    distanceKm: 0,
+                    address: '',
+                    total: 59.90,
+                    status: 'Pendente'
+                }
+            ],
+            blockedDates: [],
+            blockedSlots: [], // Formato: ["YYYY-MM-DD|HH:MM"]
+            adminSelectedBlockDate: getTomorrowISO()
+        };
+
+        // --- 2. FUNÇÕES AUXILIARES DE DATA E FORMATAÇÃO ---
+        function getTodayISO() {
+            const d = new Date();
+            return d.toISOString().split('T')[0];
+        }
+
+        function getTomorrowISO() {
+            const d = new Date();
+            d.setDate(d.getDate() + 1);
+            // Se amanhã for domingo, avança para segunda
+            if (d.getDay() === 0) {
+                d.setDate(d.getDate() + 1);
+            }
+            return d.toISOString().split('T')[0];
+        }
+
+        function isSunday(isoDate) {
+            if (!isoDate) return false;
+            const d = new Date(isoDate + 'T12:00:00');
+            return d.getDay() === 0;
+        }
+
+        function formatDateBR(isoDate) {
+            if (!isoDate) return '';
+            const [y, m, d] = isoDate.split('-');
+            return `${d}/${m}/${y}`;
+        }
+
+        function formatBRL(val) {
+            return Number(val || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function showToast(message, type = 'info') {
+            const box = document.getElementById('toast-box');
+            const toast = document.createElement('div');
+            const colors = {
+                info: 'bg-[#1e1e1e] border-[#d4af37]/60 text-white',
+                success: 'bg-emerald-950/95 border-emerald-500 text-emerald-100',
+                error: 'bg-rose-950/95 border-rose-500 text-rose-100'
+            };
+            toast.className = `pointer-events-auto px-4 py-3 rounded-xl border shadow-xl text-xs font-medium flex items-center justify-between gap-2 animate-step ${colors[type] || colors.info}`;
+            toast.innerHTML = `<span>${message}</span>`;
+            box.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.25s ease';
+                setTimeout(() => toast.remove(), 250);
+            }, 3200);
+        }
+
+        // --- 3. PERSISTÊNCIA LOCAL E VALIDAÇÃO DE SLOTS ---
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed.services) state.services = parsed.services;
+                    if (parsed.deliveryConfig) state.deliveryConfig = parsed.deliveryConfig;
+                    if (parsed.appointments) state.appointments = parsed.appointments;
+                    if (parsed.blockedDates) state.blockedDates = parsed.blockedDates;
+                    if (parsed.blockedSlots) state.blockedSlots = parsed.blockedSlots;
+                }
+            } catch (e) {
+                console.error(e);
+            }
+            state.booking.date = getTomorrowISO();
+            state.adminSelectedBlockDate = getTomorrowISO();
+            ensureValidTimeForDate(state.booking.date);
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    services: state.services,
+                    deliveryConfig: state.deliveryConfig,
+                    appointments: state.appointments,
+                    blockedDates: state.blockedDates,
+                    blockedSlots: state.blockedSlots
+                }));
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function getSlotUnavailableReason(dateIso, timeSlot) {
+            if (!dateIso) return 'Indisponível';
+            if (state.blockedSlots.includes(`${dateIso}|${timeSlot}`)) {
+                return 'Bloqueado';
+            }
+            const booked = state.appointments.some(a => a.date === dateIso && a.time === timeSlot);
+            if (booked) {
+                return 'Ocupado';
+            }
+            return null;
+        }
+
+        function ensureValidTimeForDate(dateIso) {
+            if (!dateIso || isSunday(dateIso) || state.blockedDates.includes(dateIso)) {
+                state.booking.time = '';
+                return;
+            }
+            if (state.booking.time && !getSlotUnavailableReason(dateIso, state.booking.time)) {
+                return;
+            }
+            const firstFree = TIME_SLOTS.find(slot => !getSlotUnavailableReason(dateIso, slot));
+            state.booking.time = firstFree || '';
+        }
+
+        // --- 4. CÁLCULOS DE PREÇO ---
+        function getServicesSubtotal() {
+            const porte = state.booking.porte;
+            return state.booking.selectedServices.reduce((sum, id) => {
+                const srv = state.services.find(s => s.id === id);
+                return srv ? sum + Number(srv.prices[porte] || 0) : sum;
+            }, 0);
+        }
+
+        function getDeliveryFee() {
+            if (state.booking.deliveryType !== 'home') return 0;
+            const km = Math.max(0, Number(state.booking.distanceKm) || 0);
+            if (km === 0) return 0;
+            const calc = km * Number(state.deliveryConfig.kmRate || 0);
+            return Math.max(calc, Number(state.deliveryConfig.minRate || 0));
+        }
+
+        function getGrandTotal() {
+            return getServicesSubtotal() + getDeliveryFee();
+        }
+
+        // --- 5. RENDERIZAÇÃO DO FLUXO DO CLIENTE (4 ETAPAS) ---
+        function goStep(stepNum) {
+            if (stepNum < 1 || stepNum > 4) return;
+            state.step = stepNum;
+            renderStep();
+        }
+
+        function updateProgressAndFooter() {
+            const stepTitles = {
+                1: 'Porte do Veículo',
+                2: 'Pacotes e Serviços',
+                3: 'Data e Horário',
+                4: 'Seus Dados e Entrega'
+            };
+            document.getElementById('step-badge').textContent = `Etapa ${state.step} de 4`;
+            document.getElementById('step-name').textContent = stepTitles[state.step];
+
+            for (let i = 1; i <= 4; i++) {
+                const bar = document.getElementById(`bar-${i}`);
+                bar.className = i <= state.step
+                    ? 'h-1.5 rounded-full bg-[#d4af37] transition-all duration-300'
+                    : 'h-1.5 rounded-full bg-neutral-800 transition-all duration-300';
+            }
+
+            const backBtn = document.getElementById('btn-back');
+            backBtn.classList.toggle('hidden', state.step === 1);
+
+            const footerLabel = document.getElementById('footer-label');
+            const footerTotal = document.getElementById('footer-total');
+            const nextLabel = document.getElementById('btn-next-label');
+            const nextIcon = document.getElementById('btn-next-icon');
+            const nextBtn = document.getElementById('btn-next');
+
+            if (state.step === 1) {
+                const sizeObj = VEHICLE_SIZES.find(v => v.id === state.booking.porte);
+                footerLabel.textContent = 'Lavagem a partir de';
+                footerTotal.textContent = formatBRL(sizeObj ? sizeObj.fromPrice : 39);
+                nextLabel.textContent = 'Avançar';
+                nextIcon.className = 'ph-bold ph-arrow-right';
+                nextBtn.className = 'px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b59124] hover:from-[#e6c453] hover:to-[#c9a332] text-black font-bold text-sm shadow-lg shadow-[#d4af37]/20 transition active:scale-95 flex items-center gap-2 shrink-0';
+            } else if (state.step < 4) {
+                footerLabel.textContent = `${state.booking.selectedServices.length} serviço(s)`;
+                footerTotal.textContent = formatBRL(getGrandTotal());
+                nextLabel.textContent = 'Avançar';
+                nextIcon.className = 'ph-bold ph-arrow-right';
+                nextBtn.className = 'px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b59124] hover:from-[#e6c453] hover:to-[#c9a332] text-black font-bold text-sm shadow-lg shadow-[#d4af37]/20 transition active:scale-95 flex items-center gap-2 shrink-0';
+            } else {
+                footerLabel.textContent = 'Total Estimado';
+                footerTotal.textContent = formatBRL(getGrandTotal());
+                nextLabel.textContent = 'Agendar';
+                nextIcon.className = 'ph-fill ph-whatsapp-logo text-base';
+                nextBtn.className = 'px-5 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm shadow-lg shadow-emerald-500/20 transition active:scale-95 flex items-center gap-2 shrink-0';
+            }
+        }
+
+        function renderStep() {
+            const container = document.getElementById('step-container');
+            updateProgressAndFooter();
+
+            if (state.step === 1) {
+                container.innerHTML = `
+                    <div class="animate-step space-y-4 pt-1">
+                        <div>
+                            <h2 class="font-display font-bold text-2xl text-white">Qual o porte do veículo?</h2>
+                            <p class="text-xs text-neutral-400 mt-0.5">Os valores dos pacotes são ajustados conforme o tamanho do veículo.</p>
+                        </div>
+
+                        <div class="space-y-3">
+                            ${VEHICLE_SIZES.map(v => {
+                                const selected = state.booking.porte === v.id;
+                                return `
+                                <button type="button" onclick="selectVehiclePorte('${v.id}')" class="w-full text-left p-4 rounded-2xl border-2 transition active:scale-[0.99] flex items-center justify-between gap-3 ${
+                                    selected 
+                                    ? 'bg-[#1e1e1e] border-[#d4af37] shadow-lg shadow-[#d4af37]/10' 
+                                    : 'bg-[#1e1e1e]/70 border-neutral-800 hover:border-neutral-700'
+                                }">
+                                    <div class="flex items-center gap-3.5">
+                                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${
+                                            selected ? 'bg-[#d4af37] text-black' : 'bg-[#0b0b0b] text-[#d4af37] border border-neutral-800'
+                                        }">
+                                            <i class="ph-fill ${v.icon}"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-base text-white">${v.label}</h3>
+                                            <p class="text-xs text-neutral-400">${v.desc}</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right shrink-0">
+                                        <span class="block text-[10px] text-neutral-400">A partir de</span>
+                                        <span class="font-display font-bold text-base text-[#d4af37]">${formatBRL(v.fromPrice)}</span>
+                                    </div>
+                                </button>`;
+                            }).join('')}
+                        </div>
+
+                        <!-- Banner de destaque da unidade -->
+                        <div class="bg-[#0b0b0b] border border-neutral-800 rounded-2xl p-4 flex items-center justify-between gap-3 mt-4">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider font-bold text-[#d4af37]">Atendimento Segunda a Sábado</span>
+                                <p class="text-xs text-neutral-300 mt-0.5">Estética automotiva que transforma, cuidado que impressiona!</p>
+                            </div>
+                            <i class="ph-fill ph-sparkle text-2xl text-[#d4af37] shrink-0"></i>
+                        </div>
+                    </div>
+                `;
+            } else if (state.step === 2) {
+                const porteObj = VEHICLE_SIZES.find(v => v.id === state.booking.porte);
+                container.innerHTML = `
+                    <div class="animate-step space-y-4 pt-1">
+                        <div class="flex items-center justify-between gap-2">
+                            <div>
+                                <h2 class="font-display font-bold text-2xl text-white">Escolha os serviços</h2>
+                                <p class="text-xs text-neutral-400">Tabela para <strong class="text-[#d4af37]">${porteObj.label}</strong> (pode marcar mais de um).</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            ${state.services.map(srv => {
+                                const isSelected = state.booking.selectedServices.includes(srv.id);
+                                const price = srv.prices[state.booking.porte] || 0;
+                                return `
+                                <div onclick="toggleServiceSelection(${srv.id})" class="cursor-pointer p-4 rounded-2xl border-2 transition active:scale-[0.99] flex items-start justify-between gap-3 ${
+                                    isSelected 
+                                    ? 'bg-[#1e1e1e] border-[#d4af37] shadow-lg shadow-[#d4af37]/10' 
+                                    : 'bg-[#1e1e1e]/70 border-neutral-800 hover:border-neutral-700'
+                                }">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center gap-2">
+                                            <h3 class="font-bold text-sm text-white">${srv.name}</h3>
+                                        </div>
+                                        <p class="text-xs text-neutral-400 mt-1 leading-relaxed">${srv.desc}</p>
+                                        <span class="inline-block mt-2.5 font-display font-bold text-lg text-[#d4af37]">${formatBRL(price)}</span>
+                                    </div>
+                                    <div class="w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 mt-0.5 transition ${
+                                        isSelected ? 'bg-[#d4af37] border-[#d4af37] text-black' : 'border-neutral-600 bg-[#0b0b0b]'
+                                    }">
+                                        ${isSelected ? '<i class="ph-bold ph-check text-sm"></i>' : ''}
+                                    </div>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (state.step === 3) {
+                const sundaySelected = isSunday(state.booking.date);
+                const dateBlocked = state.blockedDates.includes(state.booking.date);
+
+                container.innerHTML = `
+                    <div class="animate-step space-y-4 pt-1">
+                        <div>
+                            <h2 class="font-display font-bold text-2xl text-white">Data e Horário</h2>
+                            <p class="text-xs text-neutral-400 mt-0.5">Atendemos de Segunda a Sábado das 08:00 às 17:30.</p>
+                        </div>
+
+                        <div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-4 space-y-3">
+                            <label for="booking-date" class="block text-xs font-semibold uppercase tracking-wider text-neutral-400">Escolha o dia</label>
+                            <input type="date" id="booking-date" min="${getTodayISO()}" value="${state.booking.date}" onchange="onDateChange(this.value)"
+                                class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-4 py-3.5 text-sm font-semibold text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+
+                        ${sundaySelected ? `
+                            <div class="bg-rose-950/50 border border-rose-500/60 rounded-2xl p-4 flex items-start gap-3">
+                                <i class="ph-fill ph-warning-circle text-2xl text-rose-400 shrink-0"></i>
+                                <div>
+                                    <h4 class="font-bold text-sm text-rose-200">Domingo Fechado</h4>
+                                    <p class="text-xs text-rose-300/90 mt-0.5">A NGRA Lavagem Automotiva não abre aos domingos. Por favor, selecione outra data de segunda a sábado.</p>
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        ${(!sundaySelected && dateBlocked) ? `
+                            <div class="bg-rose-950/50 border border-rose-500/60 rounded-2xl p-4 flex items-start gap-3">
+                                <i class="ph-fill ph-calendar-x text-2xl text-rose-400 shrink-0"></i>
+                                <div>
+                                    <h4 class="font-bold text-sm text-rose-200">Agenda Lotada / Bloqueada</h4>
+                                    <p class="text-xs text-rose-300/90 mt-0.5">Não há horários disponíveis para ${formatDateBR(state.booking.date)}. Por favor, escolha outro dia.</p>
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        ${(!sundaySelected && !dateBlocked) ? `
+                            <div>
+                                <div class="flex items-center justify-between mb-2.5">
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-neutral-400">Horários Disponíveis</label>
+                                    <span class="text-[10px] text-neutral-400 flex items-center gap-2">
+                                        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#d4af37]"></span> Livre</span>
+                                        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500"></span> Indisponível</span>
+                                    </span>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2.5">
+                                    ${TIME_SLOTS.map(slot => {
+                                        const unavailableReason = getSlotUnavailableReason(state.booking.date, slot);
+                                        const isUnavailable = Boolean(unavailableReason);
+                                        const isSelected = !isUnavailable && state.booking.time === slot;
+
+                                        if (isUnavailable) {
+                                            return `
+                                            <button type="button" disabled class="py-2.5 px-2 rounded-xl border border-rose-500/40 bg-rose-950/35 text-rose-300 cursor-not-allowed flex flex-col items-center justify-center opacity-85">
+                                                <span class="text-sm font-bold line-through">${slot}</span>
+                                                <span class="text-[10px] font-semibold uppercase tracking-wide text-rose-400 mt-0.5">Indisponível</span>
+                                            </button>`;
+                                        }
+
+                                        return `
+                                        <button type="button" onclick="selectTime('${slot}')" class="py-2.5 px-2 rounded-xl border transition active:scale-95 flex flex-col items-center justify-center ${
+                                            isSelected 
+                                            ? 'bg-[#d4af37] border-[#d4af37] text-black shadow-lg shadow-[#d4af37]/20' 
+                                            : 'bg-[#1e1e1e] border-neutral-800 text-white hover:border-[#d4af37]/60'
+                                        }">
+                                            <span class="text-sm font-bold">${slot}</span>
+                                            <span class="text-[10px] font-medium mt-0.5 ${isSelected ? 'text-black/80' : 'text-[#d4af37]'}">Disponível</span>
+                                        </button>`;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            } else if (state.step === 4) {
+                const isHome = state.booking.deliveryType === 'home';
+                const deliveryFee = getDeliveryFee();
+                const porteObj = VEHICLE_SIZES.find(v => v.id === state.booking.porte);
+                const selectedSrvs = state.services.filter(s => state.booking.selectedServices.includes(s.id));
+
+                container.innerHTML = `
+                    <div class="animate-step space-y-4 pt-1">
+                        <div>
+                            <h2 class="font-display font-bold text-2xl text-white">Entrega e Seus Dados</h2>
+                            <p class="text-xs text-neutral-400 mt-0.5">Escolha se vai trazer o veículo ou se prefere que busquemos.</p>
+                        </div>
+
+                        <!-- Opção Leva na Lavagem vs Buscar em Casa -->
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <button type="button" onclick="selectDeliveryMode('shop')" class="p-3.5 rounded-2xl border-2 text-left transition active:scale-95 ${
+                                !isHome ? 'bg-[#1e1e1e] border-[#d4af37]' : 'bg-[#1e1e1e]/60 border-neutral-800'
+                            }">
+                                <i class="ph-fill ph-storefront text-xl ${!isHome ? 'text-[#d4af37]' : 'text-neutral-400'}"></i>
+                                <span class="block font-bold text-xs text-white mt-1.5">Levar na Lavagem</span>
+                                <span class="block text-[10px] text-neutral-400 mt-0.5">Rua D, 290 (Grátis)</span>
+                            </button>
+
+                            <button type="button" onclick="selectDeliveryMode('home')" class="p-3.5 rounded-2xl border-2 text-left transition active:scale-95 ${
+                                isHome ? 'bg-[#1e1e1e] border-[#d4af37]' : 'bg-[#1e1e1e]/60 border-neutral-800'
+                            }">
+                                <i class="ph-fill ph-house-line text-xl ${isHome ? 'text-[#d4af37]' : 'text-neutral-400'}"></i>
+                                <span class="block font-bold text-xs text-white mt-1.5">Buscar em Casa</span>
+                                <span class="block text-[10px] text-neutral-400 mt-0.5">Taxa por KM</span>
+                            </button>
+                        </div>
+
+                        ${isHome ? `
+                            <div class="bg-[#1e1e1e] border border-[#d4af37]/40 rounded-2xl p-4 space-y-3 animate-step">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-[#d4af37] flex items-center gap-1.5">
+                                        <i class="ph-fill ph-navigation-arrow"></i> Cálculo Leva e Traz
+                                    </span>
+                                    <span class="text-[11px] text-neutral-400">${formatBRL(state.deliveryConfig.kmRate)}/km (mín. ${formatBRL(state.deliveryConfig.minRate)})</span>
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] text-neutral-300 mb-1">Distância aproximada até a lavagem (KM)</label>
+                                    <input type="number" min="1" max="100" value="${state.booking.distanceKm}" oninput="onDistanceChange(this.value)"
+                                        class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:border-[#d4af37] focus:outline-none" placeholder="Ex: 5">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] text-neutral-300 mb-1">Endereço completo para busca *</label>
+                                    <input type="text" value="${state.booking.address}" oninput="state.booking.address = this.value"
+                                        class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:border-[#d4af37] focus:outline-none" placeholder="Rua, número, bairro...">
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <!-- Formulário do Cliente -->
+                        <div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-4 space-y-3">
+                            <div>
+                                <label class="block text-[11px] text-neutral-400 mb-1">Seu Nome *</label>
+                                <input type="text" value="${state.booking.clientName}" oninput="state.booking.clientName = this.value"
+                                    class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:border-[#d4af37] focus:outline-none" placeholder="Nome completo">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] text-neutral-400 mb-1">Seu WhatsApp *</label>
+                                <input type="tel" value="${state.booking.clientPhone}" oninput="formatPhoneInput(this)"
+                                    class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:border-[#d4af37] focus:outline-none" placeholder="(51) 99999-9999">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] text-neutral-400 mb-1">Modelo e Placa do Veículo *</label>
+                                <input type="text" value="${state.booking.vehicleModel}" oninput="state.booking.vehicleModel = this.value"
+                                    class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:border-[#d4af37] focus:outline-none" placeholder="Ex: Onix Preto - ABC1D23">
+                            </div>
+                        </div>
+
+                        <!-- Resumo Final -->
+                        <div class="bg-[#0b0b0b] border border-neutral-800 rounded-2xl p-4 space-y-2 text-xs">
+                            <h4 class="font-bold text-white uppercase tracking-wider text-[11px] border-b border-neutral-800 pb-2">Resumo do Agendamento</h4>
+                            <div class="flex justify-between text-neutral-400">
+                                <span>Veículo (${porteObj.label}):</span>
+                                <span class="text-white font-medium">${formatDateBR(state.booking.date)} às ${state.booking.time}</span>
+                            </div>
+                            ${selectedSrvs.map(s => `
+                                <div class="flex justify-between text-neutral-300">
+                                    <span>• ${s.name}</span>
+                                    <span>${formatBRL(s.prices[state.booking.porte])}</span>
+                                </div>
+                            `).join('')}
+                            ${isHome ? `
+                                <div class="flex justify-between text-[#d4af37]">
+                                    <span>• Taxa Busca em Casa (${state.booking.distanceKm || 0} km)</span>
+                                    <span>${formatBRL(deliveryFee)}</span>
+                                </div>
+                            ` : ''}
+                            <div class="flex justify-between font-bold text-sm text-[#d4af37] border-t border-neutral-800 pt-2 mt-1">
+                                <span>Total Estimado:</span>
+                                <span>${formatBRL(getGrandTotal())}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // --- 6. INTERAÇÕES DO CLIENTE ---
+        function selectVehiclePorte(porteId) {
+            state.booking.porte = porteId;
+            renderStep();
+        }
+
+        function toggleServiceSelection(serviceId) {
+            const idx = state.booking.selectedServices.indexOf(serviceId);
+            if (idx > -1) {
+                state.booking.selectedServices.splice(idx, 1);
+            } else {
+                state.booking.selectedServices.push(serviceId);
+            }
+            renderStep();
+        }
+
+        function onDateChange(val) {
+            state.booking.date = val;
+            ensureValidTimeForDate(val);
+            renderStep();
+        }
+
+        function selectTime(slot) {
+            if (getSlotUnavailableReason(state.booking.date, slot)) {
+                showToast("Este horário está indisponível.", "error");
+                return;
+            }
+            state.booking.time = slot;
+            renderStep();
+        }
+
+        function selectDeliveryMode(mode) {
+            state.booking.deliveryType = mode;
+            renderStep();
+        }
+
+        function onDistanceChange(val) {
+            state.booking.distanceKm = Math.max(0, Number(val) || 0);
+            updateProgressAndFooter();
+            // Atualiza o valor da taxa no resumo sem perder o foco do input
+            renderStepSummaryOnly();
+        }
+
+        function renderStepSummaryOnly() {
+            if (state.step === 4) {
+                updateProgressAndFooter();
+            }
+        }
+
+        function formatPhoneInput(input) {
+            let v = input.value.replace(/\D/g, '').slice(0, 11);
+            if (v.length > 6) {
+                v = v.replace(/^(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+            } else if (v.length > 2) {
+                v = v.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+            } else if (v.length > 0) {
+                v = v.replace(/^(\d{0,2})/, '($1');
+            }
+            input.value = v;
+            state.booking.clientPhone = v;
+        }
+
+        function handleNextStep() {
+            if (state.step === 1) {
+                goStep(2);
+            } else if (state.step === 2) {
+                if (state.booking.selectedServices.length === 0) {
+                    showToast("Selecione pelo menos um serviço para continuar.", "error");
+                    return;
+                }
+                goStep(3);
+            } else if (state.step === 3) {
+                if (!state.booking.date) {
+                    showToast("Escolha uma data para o agendamento.", "error");
+                    return;
+                }
+                if (isSunday(state.booking.date)) {
+                    showToast("A lavagem está fechada aos domingos. Escolha outro dia.", "error");
+                    return;
+                }
+                if (state.blockedDates.includes(state.booking.date)) {
+                    showToast("Esta data está bloqueada na agenda.", "error");
+                    return;
+                }
+                if (!state.booking.time || getSlotUnavailableReason(state.booking.date, state.booking.time)) {
+                    showToast("Selecione um horário disponível para continuar.", "error");
+                    return;
+                }
+                goStep(4);
+            } else if (state.step === 4) {
+                submitBooking();
+            }
+        }
+
+        function submitBooking() {
+            const { clientName, clientPhone, vehicleModel, deliveryType, distanceKm, address, date, time, porte, selectedServices } = state.booking;
+
+            if (!clientName.trim() || !clientPhone.trim() || !vehicleModel.trim()) {
+                showToast("Preencha seu nome, WhatsApp e modelo/placa do veículo.", "error");
+                return;
+            }
+            if (deliveryType === 'home' && (!address.trim() || Number(distanceKm) <= 0)) {
+                showToast("Informe a distância em KM e o endereço completo para busca.", "error");
+                return;
+            }
+            if (state.blockedDates.includes(date)) {
+                showToast("Esta data foi bloqueada na agenda. Escolha outro dia.", "error");
+                goStep(3);
+                return;
+            }
+            if (getSlotUnavailableReason(date, time)) {
+                showToast("Este horário acabou de ficar indisponível. Escolha outro horário.", "error");
+                ensureValidTimeForDate(date);
+                goStep(3);
+                return;
+            }
+
+            const porteObj = VEHICLE_SIZES.find(v => v.id === porte);
+            const chosenServices = state.services.filter(s => selectedServices.includes(s.id));
+            const total = getGrandTotal();
+            const deliveryFee = getDeliveryFee();
+
+            // Registra no painel administrativo local
+            state.appointments.unshift({
+                id: Date.now(),
+                clientName: clientName.trim(),
+                clientPhone: clientPhone.trim(),
+                vehicleModel: vehicleModel.trim(),
+                porteLabel: porteObj.label,
+                services: chosenServices.map(s => s.name),
+                date,
+                time,
+                deliveryType,
+                distanceKm: deliveryType === 'home' ? Number(distanceKm) : 0,
+                address: deliveryType === 'home' ? address.trim() : '',
+                total,
+                status: 'Pendente'
+            });
+            saveState();
+
+            // Monta mensagem estruturada do WhatsApp
+            let lines = [
+                `*NOVO AGENDAMENTO - NGRA LAVAGEM AUTOMOTIVA*`,
+                ``,
+                `*Cliente:* ${clientName.trim()}`,
+                `*WhatsApp:* ${clientPhone.trim()}`,
+                `*Veículo:* ${vehicleModel.trim()} (${porteObj.label})`,
+                `*Data/Hora:* ${formatDateBR(date)} às ${time}`,
+                ``,
+                `*Serviços:*`,
+                ...chosenServices.map(s => `- ${s.name}: ${formatBRL(s.prices[porte])}`),
+                ``
+            ];
+
+            if (deliveryType === 'home') {
+                lines.push(`*Atendimento:* Buscar em Casa (Leva e Traz)`);
+                lines.push(`*Distância:* ${distanceKm} km (Taxa: ${formatBRL(deliveryFee)})`);
+                lines.push(`*Endereço:* ${address.trim()}`);
+            } else {
+                lines.push(`*Atendimento:* Levar na Lavagem (Rua D, 290)`);
+            }
+
+            lines.push(``);
+            lines.push(`*TOTAL ESTIMADO:* ${formatBRL(total)}`);
+
+            const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(lines.join('\n'))}`;
+            showToast("Agendamento registrado! Abrindo WhatsApp...", "success");
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+            // Atualiza próximo horário disponível para evitar conflito imediato
+            ensureValidTimeForDate(date);
+        }
+
+        // --- 7. PAINEL ADMINISTRATIVO ---
+        function toggleAdminPanel() {
+            if (state.adminOpen) {
+                closeAdminPanel();
+            } else {
+                openAdminPanel();
+            }
+        }
+
+        function openAdminPanel() {
+            state.adminOpen = true;
+            document.getElementById('client-flow').classList.add('hidden');
+            document.getElementById('client-footer').classList.add('hidden');
+            document.getElementById('admin-panel').classList.remove('hidden');
+            document.getElementById('admin-panel').classList.add('flex');
+            document.getElementById('admin-toggle-icon').className = 'ph-fill ph-lock-key-open text-base';
+            renderAdminAll();
+        }
+
+        function closeAdminPanel() {
+            state.adminOpen = false;
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.getElementById('admin-panel').classList.remove('flex');
+            document.getElementById('client-flow').classList.remove('hidden');
+            document.getElementById('client-footer').classList.remove('hidden');
+            document.getElementById('admin-toggle-icon').className = 'ph-fill ph-lock-key text-base';
+            ensureValidTimeForDate(state.booking.date);
+            renderStep();
+        }
+
+        function switchAdminTab(tab) {
+            state.adminTab = tab;
+            const tabs = ['agendamentos', 'financeiro', 'servicos', 'bloqueios'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-btn-${t}`);
+                const panel = document.getElementById(`admin-tab-${t}`);
+                if (t === tab) {
+                    btn.className = 'py-2 px-1 text-[11px] font-bold rounded-lg bg-[#d4af37] text-black transition truncate';
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.className = 'py-2 px-1 text-[11px] font-semibold rounded-lg text-neutral-400 hover:text-white transition truncate';
+                    panel.classList.add('hidden');
+                }
+            });
+            renderAdminAll();
+        }
+
+        function copyClientAppLink() {
+            const cleanUrl = window.location.origin + window.location.pathname;
+            const tempInput = document.createElement('input');
+            tempInput.value = cleanUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("Link do aplicativo copiado! Pronto para colar no WhatsApp ou Instagram.", "success");
+        }
+
+        function renderAdminAll() {
+            renderAdminBookings();
+            renderAdminFinance();
+            renderAdminServices();
+            renderAdminBlocked();
+        }
+
+        function renderAdminBookings() {
+            const container = document.getElementById('admin-bookings-container');
+            if (state.appointments.length === 0) {
+                container.innerHTML = `<div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-6 text-center text-xs text-neutral-400">Nenhum agendamento registrado ainda.</div>`;
+                return;
+            }
+
+            const statusBadgeStyles = {
+                'Pendente': 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+                'Em Andamento': 'bg-sky-500/20 text-sky-300 border-sky-500/40',
+                'Concluído': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+            };
+
+            container.innerHTML = state.appointments.map(appt => `
+                <div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-4 space-y-2.5">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                            <h4 class="font-bold text-sm text-white">${appt.clientName}</h4>
+                            <p class="text-xs text-neutral-400">${appt.vehicleModel} • <span class="text-[#d4af37]">${appt.porteLabel}</span></p>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full border text-[10px] font-bold uppercase ${statusBadgeStyles[appt.status] || statusBadgeStyles['Pendente']}">
+                            ${appt.status}
+                        </span>
+                    </div>
+
+                    <div class="text-xs text-neutral-300 space-y-1 bg-[#0b0b0b] p-3 rounded-xl border border-neutral-800/80">
+                        <div><strong class="text-neutral-400">Quando:</strong> ${formatDateBR(appt.date)} às ${appt.time}</div>
+                        <div><strong class="text-neutral-400">Serviços:</strong> ${appt.services.join(', ')}</div>
+                        <div><strong class="text-neutral-400">Atendimento:</strong> ${appt.deliveryType === 'home' ? `Buscar em casa (${appt.distanceKm} km - ${appt.address})` : 'Levar na Lavagem'}</div>
+                        <div class="flex items-center justify-between pt-1 border-t border-neutral-800 mt-1">
+                            <span class="text-neutral-400">${appt.clientPhone}</span>
+                            <span class="font-bold text-[#d4af37] text-sm">${formatBRL(appt.total)}</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-1.5 pt-1">
+                        <button onclick="updateBookingStatus(${appt.id}, 'Pendente')" class="py-2 rounded-xl text-[11px] font-semibold border transition ${appt.status === 'Pendente' ? 'bg-amber-500 text-black border-amber-500 font-bold' : 'bg-[#0b0b0b] text-neutral-400 border-neutral-800'}">Pendente</button>
+                        <button onclick="updateBookingStatus(${appt.id}, 'Em Andamento')" class="py-2 rounded-xl text-[11px] font-semibold border transition ${appt.status === 'Em Andamento' ? 'bg-sky-500 text-black border-sky-500 font-bold' : 'bg-[#0b0b0b] text-neutral-400 border-neutral-800'}">Andamento</button>
+                        <button onclick="updateBookingStatus(${appt.id}, 'Concluído')" class="py-2 rounded-xl text-[11px] font-semibold border transition ${appt.status === 'Concluído' ? 'bg-emerald-500 text-black border-emerald-500 font-bold' : 'bg-[#0b0b0b] text-neutral-400 border-neutral-800'}">Concluído</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateBookingStatus(id, newStatus) {
+            const appt = state.appointments.find(a => a.id === id);
+            if (appt) {
+                appt.status = newStatus;
+                saveState();
+                renderAdminBookings();
+                renderAdminFinance();
+                showToast(`Status alterado para ${newStatus}.`, "success");
+            }
+        }
+
+        function renderAdminFinance() {
+            const total = state.appointments.reduce((acc, a) => acc + Number(a.total || 0), 0);
+            const doneCount = state.appointments.filter(a => a.status === 'Concluído').length;
+            const activeCount = state.appointments.length - doneCount;
+
+            document.getElementById('admin-total-revenue').textContent = formatBRL(total);
+            document.getElementById('admin-active-count').textContent = activeCount;
+            document.getElementById('admin-done-count').textContent = doneCount;
+        }
+
+        function renderAdminServices() {
+            document.getElementById('cfg-km-rate').value = state.deliveryConfig.kmRate;
+            document.getElementById('cfg-min-rate').value = state.deliveryConfig.minRate;
+
+            const container = document.getElementById('admin-services-container');
+            container.innerHTML = state.services.map(srv => `
+                <div class="bg-[#1e1e1e] border border-neutral-800 rounded-2xl p-4 space-y-3">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                            <h4 class="font-bold text-sm text-white">${srv.name}</h4>
+                            <p class="text-[11px] text-neutral-400">${srv.desc}</p>
+                        </div>
+                        <button onclick="deleteService(${srv.id})" class="p-2 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 border border-rose-500/30 transition" title="Remover serviço">
+                            <i class="ph-bold ph-trash text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-neutral-400 mb-1">Moto (R$)</label>
+                            <input type="number" step="0.10" value="${srv.prices.moto}" onchange="updateServicePrice(${srv.id}, 'moto', this.value)"
+                                class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-lg px-2 py-1.5 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-neutral-400 mb-1">Hatch/Sedan</label>
+                            <input type="number" step="0.10" value="${srv.prices.hatch}" onchange="updateServicePrice(${srv.id}, 'hatch', this.value)"
+                                class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-lg px-2 py-1.5 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-neutral-400 mb-1">SUV/Pick-up</label>
+                            <input type="number" step="0.10" value="${srv.prices.suv}" onchange="updateServicePrice(${srv.id}, 'suv', this.value)"
+                                class="w-full bg-[#0b0b0b] border border-neutral-700 rounded-lg px-2 py-1.5 text-xs text-white focus:border-[#d4af37] focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveDeliverySettings() {
+            const kmRate = parseFloat(document.getElementById('cfg-km-rate').value);
+            const minRate = parseFloat(document.getElementById('cfg-min-rate').value);
+            if (!isNaN(kmRate) && kmRate >= 0) state.deliveryConfig.kmRate = kmRate;
+            if (!isNaN(minRate) && minRate >= 0) state.deliveryConfig.minRate = minRate;
+            saveState();
+            showToast("Taxa de deslocamento atualizada!", "success");
+        }
+
+        function updateServicePrice(id, porteKey, val) {
+            const num = parseFloat(val);
+            if (isNaN(num) || num < 0) return;
+            const srv = state.services.find(s => s.id === id);
+            if (srv) {
+                srv.prices[porteKey] = num;
+                saveState();
+                showToast("Preço atualizado na tabela!", "success");
+            }
+        }
+
+        function addNewService() {
+            const name = document.getElementById('new-srv-name').value.trim();
+            const desc = document.getElementById('new-srv-desc').value.trim() || 'Serviço especializado NGRA Lavagem Automotiva.';
+            const moto = parseFloat(document.getElementById('new-srv-moto').value);
+            const hatch = parseFloat(document.getElementById('new-srv-hatch').value);
+            const suv = parseFloat(document.getElementById('new-srv-suv').value);
+
+            if (!name || isNaN(moto) || isNaN(hatch) || isNaN(suv)) {
+                showToast("Preencha o nome e os 3 valores (Moto, Hatch e SUV).", "error");
+                return;
+            }
+
+            state.services.push({
+                id: Date.now(),
+                name,
+                desc,
+                prices: { moto, hatch, suv }
+            });
+            saveState();
+
+            document.getElementById('new-srv-name').value = '';
+            document.getElementById('new-srv-desc').value = '';
+            document.getElementById('new-srv-moto').value = '';
+            document.getElementById('new-srv-hatch').value = '';
+            document.getElementById('new-srv-suv').value = '';
+
+            renderAdminServices();
+            showToast("Novo serviço cadastrado com sucesso!", "success");
+        }
+
+        function deleteService(id) {
+            if (state.services.length <= 1) {
+                showToast("Mantenha pelo menos 1 serviço ativo na tabela.", "error");
+                return;
+            }
+            state.services = state.services.filter(s => s.id !== id);
+            state.booking.selectedServices = state.booking.selectedServices.filter(sid => sid !== id);
+            saveState();
+            renderAdminServices();
+            showToast("Serviço removido da tabela.", "info");
+        }
+
+        function onAdminBlockDateChange(val) {
+            if (!val) return;
+            state.adminSelectedBlockDate = val;
+            renderAdminBlocked();
+        }
+
+        function toggleFullDayBlock() {
+            const val = document.getElementById('block-date-input').value || state.adminSelectedBlockDate;
+            if (!val) {
+                showToast("Selecione uma data primeiro.", "error");
+                return;
+            }
+            if (isSunday(val)) {
+                showToast("Domingos já são fechados automaticamente.", "info");
+                return;
+            }
+            if (state.blockedDates.includes(val)) {
+                state.blockedDates = state.blockedDates.filter(d => d !== val);
+                showToast(`Dia ${formatDateBR(val)} reaberto na agenda!`, "success");
+            } else {
+                state.blockedDates.push(val);
+                showToast(`Dia inteiro ${formatDateBR(val)} bloqueado!`, "success");
+            }
+            saveState();
+            ensureValidTimeForDate(state.booking.date);
+            renderAdminBlocked();
+        }
+
+        function toggleAdminSlotBlock(slot) {
+            const val = document.getElementById('block-date-input').value || state.adminSelectedBlockDate;
+            if (!val) {
+                showToast("Selecione uma data no calendário acima.", "error");
+                return;
+            }
+            if (isSunday(val)) {
+                showToast("Domingos já são fechados automaticamente.", "info");
+                return;
+            }
+            const key = `${val}|${slot}`;
+            if (state.blockedSlots.includes(key)) {
+                state.blockedSlots = state.blockedSlots.filter(item => item !== key);
+                showToast(`Horário ${slot} (${formatDateBR(val)}) liberado!`, "success");
+            } else {
+                state.blockedSlots.push(key);
+                showToast(`Horário ${slot} (${formatDateBR(val)}) bloqueado!`, "info");
+            }
+            saveState();
+            ensureValidTimeForDate(state.booking.date);
+            renderAdminBlocked();
+        }
+
+        function removeBlockedDate(dateIso) {
+            state.blockedDates = state.blockedDates.filter(d => d !== dateIso);
+            saveState();
+            ensureValidTimeForDate(state.booking.date);
+            renderAdminBlocked();
+            showToast("Data desbloqueada.", "info");
+        }
+
+        function removeBlockedSlot(slotKey) {
+            state.blockedSlots = state.blockedSlots.filter(k => k !== slotKey);
+            saveState();
+            ensureValidTimeForDate(state.booking.date);
+            renderAdminBlocked();
+            showToast("Horário desbloqueado.", "info");
+        }
+
+        function renderAdminBlocked() {
+            const dateInput = document.getElementById('block-date-input');
+            if (!state.adminSelectedBlockDate) {
+                state.adminSelectedBlockDate = getTomorrowISO();
+            }
+            dateInput.min = getTodayISO();
+            dateInput.value = state.adminSelectedBlockDate;
+
+            const selDate = state.adminSelectedBlockDate;
+            const sunday = isSunday(selDate);
+            const fullDayBlocked = state.blockedDates.includes(selDate);
+
+            const fullDayBtn = document.getElementById('btn-toggle-full-day');
+            if (fullDayBlocked) {
+                fullDayBtn.textContent = 'Reabrir Dia';
+                fullDayBtn.className = 'px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition active:scale-95 shrink-0';
+            } else {
+                fullDayBtn.textContent = 'Fechar Dia Inteiro';
+                fullDayBtn.className = 'px-3.5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs transition active:scale-95 shrink-0';
+            }
+
+            document.getElementById('admin-slot-date-label').textContent = `Horários em ${formatDateBR(selDate)}:`;
+
+            const slotsGrid = document.getElementById('admin-time-slots-grid');
+            if (sunday) {
+                slotsGrid.innerHTML = `<div class="col-span-3 bg-rose-950/30 border border-rose-500/40 rounded-xl p-3 text-center text-xs text-rose-300">Domingo fechado automaticamente.</div>`;
+            } else if (fullDayBlocked) {
+                slotsGrid.innerHTML = `<div class="col-span-3 bg-rose-950/30 border border-rose-500/40 rounded-xl p-3 text-center text-xs text-rose-300">O dia inteiro está fechado. Clique em "Reabrir Dia" para liberar horários.</div>`;
+            } else {
+                slotsGrid.innerHTML = TIME_SLOTS.map(slot => {
+                    const isBlocked = state.blockedSlots.includes(`${selDate}|${slot}`);
+                    const isBooked = state.appointments.some(a => a.date === selDate && a.time === slot);
+
+                    if (isBlocked) {
+                        return `
+                        <button type="button" onclick="toggleAdminSlotBlock('${slot}')" class="py-2 px-2 rounded-xl bg-rose-600/25 border border-rose-500 text-rose-200 text-xs font-bold flex flex-col items-center transition active:scale-95">
+                            <span>${slot}</span>
+                            <span class="text-[9px] uppercase text-rose-400">Bloqueado</span>
+                        </button>`;
+                    }
+                    if (isBooked) {
+                        return `
+                        <button type="button" onclick="toggleAdminSlotBlock('${slot}')" class="py-2 px-2 rounded-xl bg-amber-500/15 border border-amber-500/50 text-amber-200 text-xs font-bold flex flex-col items-center transition active:scale-95" title="Horário já possui agendamento">
+                            <span>${slot}</span>
+                            <span class="text-[9px] uppercase text-amber-400">Agendado</span>
+                        </button>`;
+                    }
+                    return `
+                    <button type="button" onclick="toggleAdminSlotBlock('${slot}')" class="py-2 px-2 rounded-xl bg-[#0b0b0b] hover:border-[#d4af37] border border-neutral-700 text-white text-xs font-bold flex flex-col items-center transition active:scale-95">
+                        <span>${slot}</span>
+                        <span class="text-[9px] uppercase text-emerald-400">Livre</span>
+                    </button>`;
+                }).join('');
+            }
+
+            const container = document.getElementById('admin-blocked-list');
+            const itemsHtml = [];
+
+            state.blockedDates.slice().sort().forEach(d => {
+                itemsHtml.push(`
+                    <div class="bg-[#1e1e1e] border border-rose-500/30 rounded-xl px-4 py-3 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-white block">📅 ${formatDateBR(d)} — Dia Inteiro</span>
+                            <span class="text-[10px] text-rose-400">Agenda fechada o dia todo</span>
+                        </div>
+                        <button onclick="removeBlockedDate('${d}')" class="text-xs text-rose-400 hover:underline font-semibold">Desbloquear</button>
+                    </div>
+                `);
+            });
+
+            state.blockedSlots.slice().sort().forEach(key => {
+                const [d, t] = key.split('|');
+                itemsHtml.push(`
+                    <div class="bg-[#1e1e1e] border border-neutral-800 rounded-xl px-4 py-3 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-white block">⏰ ${formatDateBR(d)} às <span class="text-[#d4af37]">${t}</span></span>
+                            <span class="text-[10px] text-neutral-400">Horário avulso bloqueado</span>
+                        </div>
+                        <button onclick="removeBlockedSlot('${key}')" class="text-xs text-rose-400 hover:underline font-semibold">Desbloquear</button>
+                    </div>
+                `);
+            });
+
+            if (itemsHtml.length === 0) {
+                container.innerHTML = `<p class="text-xs text-neutral-500">Nenhuma data ou horário extra bloqueado.</p>`;
+            } else {
+                container.innerHTML = itemsHtml.join('');
+            }
+        }
+
+        // --- 8. INICIALIZAÇÃO ---
+        window.onload = function() {
+            loadState();
+            renderStep();
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('admin') === '1') {
+                openAdminPanel();
+            }
+        };
+    </script>
+</body>
+</html>
